@@ -1,0 +1,25 @@
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Preguntas</title>  
+</head>  
+<body>  
+    <h1>Preguntas de Trivia</h1>  
+    <ul id="questions-list"></ul>  
+
+    <script>  
+        fetch('/api/questions/')  
+            .then(response => response.json())  
+            .then(data => {  
+                const list = document.getElementById('questions-list');  
+                data.forEach(question => {  
+                    const li = document.createElement('li');  
+                    li.textContent = question.text;  
+                    list.appendChild(li);  
+                });  
+            });  
+    </script>  
+</body>  
+</html>  

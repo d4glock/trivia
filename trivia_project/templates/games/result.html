@@ -1,0 +1,82 @@
+{% extends 'base.html' %}  
+
+{% block title %}Resultados del Juego{% endblock %}  
+
+{% block content %}  
+<div class="results-container">  
+    <h1>Resultados del Juego</h1>  
+
+    <div class="score-card">  
+        <h2>¡Juego terminado!</h2>  
+        <p class="score">Tu puntaje: {{ score }} / {{ total_questions }}</p>  
+
+        <div class="percentage">  
+            {% with percentage=score|divisibleby:total_questions|multiply:100 %}  
+                <p>Porcentaje de aciertos: {{ percentage }}%</p>  
+            {% endwith %}  
+        </div>  
+    </div>  
+
+    <div class="actions">  
+        <a href="{% url 'restart_game' %}" class="button primary">Jugar de nuevo</a>  
+        <a href="{% url 'leaderboard' %}" class="button secondary">Ver tabla de posiciones</a>  
+        <a href="{% url 'home' %}" class="button tertiary">Volver al inicio</a>  
+    </div>  
+</div>  
+
+<style>  
+    .results-container {  
+        max-width: 600px;  
+        margin: 2rem auto;  
+        text-align: center;  
+    }  
+
+    .score-card {  
+        background-color: #f8f9fa;  
+        padding: 2rem;  
+        border-radius: 10px;  
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);  
+        margin: 2rem 0;  
+    }  
+
+    .score {  
+        font-size: 2rem;  
+        font-weight: bold;  
+        color: #007bff;  
+    }  
+
+    .percentage {  
+        margin: 1rem 0;  
+        font-size: 1.2rem;  
+    }  
+
+    .actions {  
+        display: flex;  
+        justify-content: center;  
+        gap: 1rem;  
+        margin-top: 2rem;  
+    }  
+
+    .button {  
+        padding: 10px 20px;  
+        border-radius: 5px;  
+        text-decoration: none;  
+        font-weight: bold;  
+    }  
+
+    .primary {  
+        background-color: #007bff;  
+        color: white;  
+    }  
+
+    .secondary {  
+        background-color: #6c757d;  
+        color: white;  
+    }  
+
+    .tertiary {  
+        background-color: #28a745;  
+        color: white;  
+    }  
+</style>  
+{% endblock %}  

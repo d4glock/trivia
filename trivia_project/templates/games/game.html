@@ -1,0 +1,129 @@
+{% extends 'base.html' %}  
+
+{% block title %}CalicoTrivia{% endblock %}
+
+{% block content %}  
+<div class="game-container">
+        {% if messages %}  
+            <div class="messages">  
+                {% for message in messages %}  
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">  
+                        {{ message }}  
+                    </div>  
+                {% endfor %}  
+            </div>  
+    {% endif %}    
+    {% if message %}  
+        <div class="game-over">  
+            <h2>{{ message }}</h2>  
+            <p>Puntaje final: {{ final_score }}</p>  
+            <div class="game-actions">  
+                <a href="{% url 'restart_game' %}" class="button primary">Jugar de nuevo</a>  
+                <a href="{% url 'home' %}" class="button secondary">Volver al inicio</a>  
+            </div>  
+        </div>  
+    {% else %}  
+        <div class="game-progress">  
+            <p>Pregunta {{ question_number }} de {{ total_questions }}</p>  
+            <p>Puntaje actual: {{ user.player.total_score }}</p>  
+        </div>  
+
+        <div class="question-container">  
+            <h2>{{ question.text }}</h2>  
+
+            <form method="post" class="options-form">  
+                {% csrf_token %}  
+                <div class="options">  
+                    <label class="option">  
+                        <input type="radio" name="answer" value="{{ question.option_1 }}" required>  
+                        <span>{{ question.option_1 }}</span>  
+                    </label>  
+                    <label class="option">  
+                        <input type="radio" name="answer" value="{{ question.option_2 }}" required>  
+                        <span>{{ question.option_2 }}</span>  
+                    </label>  
+                    <label class="option">  
+                        <input type="radio" name="answer" value="{{ question.option_3 }}" required>  
+                        <span>{{ question.option_3 }}</span>  
+                    </label>  
+                    <label class="option">  
+                        <input type="radio" name="answer" value="{{ question.option_4 }}" required>  
+                        <span>{{ question.option_4 }}</span>  
+                    </label>  
+                </div>  
+                <button type="submit" class="button primary">Responder</button>  
+            </form>  
+        </div>  
+    {% endif %}  
+</div>  
+
+<style>  
+    .game-container {  
+        max-width: 800px;  
+        margin: 0 auto;  
+        padding: 2rem;  
+    }  
+
+    .game-progress {  
+        text-align: center;  
+        margin-bottom: 2rem;  
+    }  
+
+    .question-container {  
+        background-color: #f8f9fa;  
+        padding: 2rem;  
+        border-radius: 10px;  
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);  
+    }  
+
+    .options {  
+        display: flex;  
+        flex-direction: column;  
+        gap: 1rem;  
+        margin: 2rem 0;  
+    }  
+
+    .option {  
+        display: flex;  
+        align-items: center;  
+        padding: 1rem;  
+        background-color: white;  
+        border: 1px solid #dee2e6;  
+        border-radius: 5px;  
+        cursor: pointer;  
+        transition: all 0.3s ease;  
+    }  
+
+    .option:hover {  
+        background-color: #e9ecef;  
+    }  
+
+    .button {  
+        display: inline-block;  
+        padding: 10px 20px;  
+        border-radius: 5px;  
+        text-decoration: none;  
+        font-weight: bold;  
+        margin: 0 10px;  
+    }  
+
+    .primary {  
+        background-color: #007bff;  
+        color: white;  
+        border: none;  
+    }  
+
+    .secondary {  
+        background-color: #6c757d;  
+        color: white;  
+    }  
+
+    .game-over {  
+        text-align: center;  
+    }  
+
+    .game-actions {  
+        margin-top: 2rem;  
+    }  
+</style>  
+{% endblock %}  
