@@ -9,14 +9,13 @@ from api.serializers import PlayerSerializer
 from django.contrib.auth import logout
 
 
+
 def register_view(request):    
     if request.method == 'POST':    
         form = UserCreationForm(request.POST)    
         if form.is_valid():    
             # Crea el usuario
             user = form.save()    
-            
-            # Verifica si el Player ya existe antes de crearlo
             if not Player.objects.filter(user=user).exists():
                 Player.objects.create(user=user)    
                
@@ -33,6 +32,12 @@ def register_view(request):
     return render(request, 'players/register.html', {'form': form})
 
 @login_required
+def custom_redirect(request):
+    if request.user.is_superuser:
+        return redirect('/admin/')  # URL del Django Admin
+    else:
+        return redirect('/')  # URL para usuarios normales
+    
 def logout_view(request):
     logout(request)
     messages.success(request, '¡Has cerrado sesión exitosamente!')
@@ -46,9 +51,10 @@ def login_view(request):
             password = form.cleaned_data.get('password')    
             user = authenticate(username=username, password=password)    
             if user is not None:    
-                login(request, user)    
-                messages.success(request, f'Bienvenido {username}!')    
-                return redirect('home')    
+                login(request, user)
+                messages.success(request, f'Bienvenido {username}!')
+                return redirect('custom_redirect')  # Redirige al custom_redirect
+                
         else:    
             messages.error(request, 'Usuario o contraseña incorrectos.')    
     else:    

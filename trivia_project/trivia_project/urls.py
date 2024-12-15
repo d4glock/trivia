@@ -9,6 +9,7 @@ from players import views as player_views
 from questions import views as question_views  
 from games import views as game_views  
 from django.contrib.auth import views as auth_views  
+from players.views import custom_redirect
 
 
 router = DefaultRouter()  
@@ -29,7 +30,7 @@ frontend_urlpatterns = [
     path('login/', player_views.login_view, name='login'),  
     path('logout/', player_views.logout_view, name='logout'),
     path('register/', player_views.register_view, name='register'),  
-
+    path('redirect/', player_views.custom_redirect, name='custom_redirect'),
    
     path('profile/', player_views.profile_view, name='profile'),  
     path('leaderboard/', player_views.leaderboard_view, name='leaderboard'),  
@@ -48,5 +49,6 @@ frontend_urlpatterns = [
 urlpatterns = [  
     path('admin/', admin.site.urls),  
     path('api/', include(api_urlpatterns)),  
-    path('', include(frontend_urlpatterns)),  
+    path('', include(frontend_urlpatterns)),
+      
 ]  

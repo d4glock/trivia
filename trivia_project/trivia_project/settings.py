@@ -73,7 +73,8 @@ ROOT_URLCONF = 'trivia_project.urls'
 
 LOGIN_URL = 'login'  
 LOGIN_REDIRECT_URL = 'home'  
-LOGOUT_REDIRECT_URL = 'login'  
+LOGIN_REDIRECT_URL = '/redirect/'  # Apunta a la URL que acabas de registrar
+  
 
  
 TEMPLATES = [  
