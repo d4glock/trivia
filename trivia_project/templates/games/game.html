@@ -1,21 +1,27 @@
-{% extends 'base.html' %}  
+{% extends 'base.html' %} 
+{% load static %}
 
 {% block title %}CalicoTrivia{% endblock %}
 
 {% block content %}  
 <div class="game-container">
-        {% if messages %}  
-            <div class="messages">  
-                {% for message in messages %}  
-                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">  
-                        {{ message }}  
-                    </div>  
-                {% endfor %}  
-            </div>  
+    {% if messages %}  
+        <div class="messages">  
+            {% for message in messages %} 
+            {% endfor %}
+        </div>  
     {% endif %}    
+
     {% if message %}  
         <div class="game-over">  
-            <h2>{{ message }}</h2>  
+            <h2>{{ message }}</h2>
+
+            {% if final_score <= 15 %}
+                <img src="{% static '1.png' %}" alt="Puntaje bajo" style="max-width: 40%; height: auto;">
+            {% else %}
+                <img src="{% static '2.png' %}" alt="Puntaje alto" style="max-width: 40%; height: auto;">
+            {% endif %}
+
             <p>Puntaje final: {{ final_score }}</p>  
             <div class="game-actions">  
                 <a href="{% url 'restart_game' %}" class="button primary">Jugar de nuevo</a>  
@@ -55,7 +61,8 @@
             </form>  
         </div>  
     {% endif %}  
-</div>  
+</div>
+
 
 <style>  
     .game-container {  
