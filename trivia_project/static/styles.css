@@ -66,9 +66,9 @@ body {
 }
 
 .main-content p {
-    font-size: 18px;
+    font-size: 30px;
     margin-bottom: 30px;
-    color: #666; 
+    color: #000000; 
 }
 
 .main-content .btn {
@@ -401,6 +401,9 @@ p a:hover {
 /* Estilos para los mensajes flash (mensajes de éxito, error, etc.) */
 .messages {
     margin-bottom: 20px;
+    font-size: 30px;
+    padding-top: 20px;
+    font-weight: bold;
 }
 
 .message {

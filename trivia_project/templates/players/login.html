@@ -3,8 +3,9 @@
 
 {% block content %}  
 <div class="auth-form">  
-    <h2 style="font-size: 40px; border-bottom: 1px solid black;">Iniciar Sesión</h2>
-    <img src="{% static 'foto.png' %}" alt="Foto" style="max-width: 40%; height: auto;"> <!-- Usa el tag static -->
+
+    <img src="{% static 'foto.png' %}" alt="Foto" style="max-width: 40%; height: auto;">
+    <h2 style="font-size: 40px;">Iniciar Sesión</h2>
 
     {% if messages %}  
     <div class="messages">  
