@@ -3,14 +3,15 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9; /* Fondo gris claro */
-    color: #333; /* Texto oscuro */
+    background-color: #f4f4f9; 
+    color: #333; 
+    height: 100%;
 }
 
 /* Navbar styles */
 .navbar {
-    background-color: #4c4c9d; /* Morado oscuro */
-    padding: 15px 20px;
+    background-color: #4c4c9d; 
+    padding: 35px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,10 +22,11 @@ body {
 }
 
 .navbar .logo {
-    font-size: 22px;
     font-weight: bold;
     color: #ffffff;
     text-decoration: none;
+    font-size: 40px;
+    font-weight: bold;
 }
 
 .nav-links a {
@@ -33,12 +35,13 @@ body {
     margin: 0 10px;
     padding: 8px 12px;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 25px;
     transition: background-color 0.3s ease;
+    border: 2px solid black;
 }
 
 .nav-links a:hover {
-    background-color: #7d7dbb; /* Morado suave */
+    background-color: #7d7dbb; 
 }
 
 /* Main content */
@@ -49,19 +52,23 @@ body {
     justify-content: center;
     min-height: 80vh;
     text-align: center;
-    padding: 40px 20px;
+    background-image: url("/static/wall.PNG");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-color: white;
+    background-position: center;
 }
 
 .main-content h1 {
     font-size: 42px;
-    color: #4c4c9d; /* Morado oscuro */
+    color: #4c4c9d; 
     margin-bottom: 20px;
 }
 
 .main-content p {
     font-size: 18px;
     margin-bottom: 30px;
-    color: #666; /* Texto gris */
+    color: #666; 
 }
 
 .main-content .btn {
@@ -70,7 +77,7 @@ body {
     font-size: 18px;
     text-decoration: none;
     color: #ffffff;
-    background-color: #4c4c9d; /* Morado oscuro */
+    background-color: #4c4c9d; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -78,19 +85,23 @@ body {
 }
 
 .main-content .btn:hover {
-    background-color: #7d7dbb; /* Morado suave */
+    background-color: #7d7dbb; 
     transform: translateY(-3px);
 }
 
-/* Footer */
+/* Estilo del footer */
 footer {
+    position: fixed; 
+    bottom: 0; 
+    left: 0; 
+    right: 0;
     text-align: center;
     padding: 15px;
-    background-color: #4c4c9d; /* Morado oscuro */
+    background-color: #4c4c9d; 
     color: #fff;
-    font-size: 14px;
-    margin-top: 30px;
+    font-size: 30px;
 }
+
 /* Perfil */
 /* Perfil */
 /* Perfil */
@@ -102,7 +113,7 @@ footer {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff; /* Fondo blanco para el contenido */
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -110,7 +121,7 @@ footer {
 
 .profile-title {
     font-size: 32px;
-    color: #4c4c9d; /* Morado oscuro */
+    color: #4c4c9d;
     margin-bottom: 20px;
 }
 
@@ -121,14 +132,14 @@ footer {
 }
 
 .profile-info strong {
-    color: #4c4c9d; /* Morado para resaltar */
+    color: #4c4c9d;
 }
 
 /* Botón de cerrar sesión */
 .logout-btn {
     padding: 12px 24px;
     font-size: 18px;
-    background-color: #4c4c9d; /* Morado oscuro */
+    background-color: #4c4c9d;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -138,7 +149,7 @@ footer {
 }
 
 .logout-btn:hover {
-    background-color: #7d7dbb; /* Morado suave */
+    background-color: #7d7dbb; 
     transform: translateY(-3px);
 }
 
@@ -164,7 +175,7 @@ footer {
 
 .leaderboard-title {
     font-size: 32px;
-    color: #4c4c9d; /* Morado oscuro */
+    color: #4c4c9d; 
     margin-bottom: 20px;
 }
 
@@ -181,23 +192,23 @@ footer {
 }
 
 .leaderboard-table th {
-    background-color: #f4f4f4; /* Fondo suave para las cabeceras */
-    color: #4c4c9d; /* Morado para las cabeceras */
+    background-color: #f4f4f4; 
+    color: #4c4c9d; 
 }
 
 .leaderboard-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9; /* Color alterno para las filas */
+    background-color: #f9f9f9;
 }
 
 .leaderboard-table tbody tr:hover {
-    background-color: #efefef; /* Efecto hover para las filas */
+    background-color: #efefef; 
 }
 
 /* Botón de volver al perfil */
 .back-btn {
     padding: 12px 24px;
     font-size: 18px;
-    background-color: #4c4c9d; /* Morado oscuro */
+    background-color: #4c4c9d; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -209,7 +220,7 @@ footer {
 }
 
 .back-btn:hover {
-    background-color: #7d7dbb; /* Morado suave */
+    background-color: #7d7dbb;
     transform: translateY(-3px);
 }
 
@@ -238,11 +249,12 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    border: 2px solid black;
 }
 
 /* Heading */
 .auth-form h2 {
-    color: #9b59b6; /* Morado */
+    color: #9b59b6; 
     margin-bottom: 20px;
     font-size: 24px;
 }
@@ -271,7 +283,7 @@ body {
 .auth-form button {
     width: 100%;
     padding: 12px;
-    background-color: #9b59b6; /* Morado */
+    background-color: #9b59b6; 
     color: white;
     border: none;
     border-radius: 4px;
@@ -280,7 +292,7 @@ body {
 }
 
 .auth-form button:hover {
-    background-color: #8e44ad; /* Morado más oscuro */
+    background-color: #8e44ad; 
 }
 
 /* Error Message Styling */
@@ -319,7 +331,7 @@ body {
 .auth-form h2 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #6f42c1; /* Color morado */
+    color: #6f42c1; 
 }
 
 /* Estilos para el formulario */
@@ -344,7 +356,7 @@ body {
 }
 
 .form-group input:focus {
-    border-color: #6f42c1; /* Color morado cuando el input está enfocado */
+    border-color: #6f42c1; 
     outline: none;
 }
 
@@ -361,14 +373,14 @@ button {
     padding: 12px;
     font-size: 16px;
     color: white;
-    background-color: #6f42c1; /* Color morado */
+    background-color: #6f42c1; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #5a2a9d; /* Morado más oscuro */
+    background-color: #5a2a9d; 
 }
 
 /* Estilos para el enlace de inicio de sesión */
