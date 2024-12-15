@@ -13,4 +13,4 @@ class Question(models.Model):
         return self.text  
 
     class Meta:  
-        ordering = ['?']  # Esto ordenará las preguntas aleatoriamente  
+        ordering = ['?']

@@ -1,14 +1,26 @@
-{% extends 'base.html' %}  
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Inicio - Juego de Trivia{% endblock %}
 
-{% block title %}Inicio - Juego de Trivia{% endblock %}  
-
-{% block content %}  
-    <h1>Bienvenido al Juego de Trivia</h1>  
-    {% if user.is_authenticated %}  
-        <p>¡Hola, {{ user.username }}!</p>  
-        <a href="{% url 'game' %}" class="button">Comenzar a Jugar</a>  
-    {% else %}  
-        <p>Por favor, inicia sesión para jugar.</p>  
-        <a href="{% url 'login' %}" class="button">Iniciar Sesión</a>  
-    {% endif %}  
-{% endblock %}  
+{% block content %}
+    <h1>Bienvenido al Juego de Trivia</h1>
+    {% if user.is_authenticated %}
+        <p>¡Hola, {{ user.username }}!</p>
+        <p>Selecciona el número de preguntas para comenzar:</p>
+        <form method="POST" action="{% url 'start_game' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="num_questions">Número de preguntas:</label>
+                <select name="num_questions" id="num_questions" class="form-control">
+                    <option value="10">10 preguntas</option>
+                    <option value="20">20 preguntas</option>
+                    <option value="30">30 preguntas</option>
+                </select>
+            </div>
+            <button type="submit" class="button">Comenzar Juego</button>
+        </form>
+    {% else %}
+        <p>Por favor, inicia sesión para jugar.</p>
+        <a href="{% url 'login' %}" class="button">Iniciar Sesión</a>
+    {% endif %}
+{% endblock %}
