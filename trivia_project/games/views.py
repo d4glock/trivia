@@ -34,9 +34,9 @@ def home_view(request):
     })  
 
 
+# games/views.py
 @login_required    
 def game_view(request):    
-    
     if 'question_ids' not in request.session:  
         question_ids = list(Question.objects.values_list('id', flat=True))  
         from random import shuffle  
@@ -52,21 +52,16 @@ def game_view(request):
             'final_score': request.user.player.total_score    
         })    
 
-
     try:  
         current_question = Question.objects.get(id=question_ids[current_question_index])  
+        # Obtener opciones aleatorias
+        shuffled_options = current_question.get_shuffled_options()
     except Question.DoesNotExist:  
         messages.error(request, 'Error al cargar la pregunta')  
         return redirect('home')  
 
     if request.method == 'POST':    
         selected_answer = request.POST.get('answer')  
-
-        # Debug logging  
-        print(f"Índice actual: {current_question_index}")  
-        print(f"Pregunta actual: {current_question.text}")  
-        print(f"Respuesta seleccionada: '{selected_answer}'")  
-        print(f"Respuesta correcta: '{current_question.correct_answer}'")  
 
         if selected_answer:  
             if selected_answer == current_question.correct_answer:  
@@ -82,15 +77,15 @@ def game_view(request):
         else:  
             messages.error(request, 'Por favor selecciona una respuesta')  
 
-    
     context = {    
-        'question': current_question,    
+        'question': current_question,
+        'shuffled_options': shuffled_options,
         'question_number': current_question_index + 1,    
         'total_questions': len(question_ids),  
         'messages': messages.get_messages(request)  
     }  
 
-    return render(request, 'games/game.html', context)  
+    return render(request, 'games/game.html', context)
 
 @login_required    
 def restart_game_view(request):    

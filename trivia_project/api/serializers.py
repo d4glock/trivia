@@ -19,12 +19,16 @@ class PlayerSerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'total_score']  
 
 
-class QuestionSerializer(serializers.ModelSerializer):  
-    options = serializers.SerializerMethodField()  
 
-    class Meta:  
-        model = Question  
-        fields = ['id', 'text', 'correct_answer', 'options']  
+class QuestionSerializer(serializers.ModelSerializer):
+    options = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Question
+        fields = ['id', 'text', 'correct_answer', 'options']
+
+    def get_options(self, obj):
+        return obj.get_shuffled_options()
 
     def get_options(self, obj):  
         return [  
