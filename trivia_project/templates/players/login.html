@@ -1,8 +1,11 @@
 {% extends 'base.html' %}  
+{% load static %}  <!-- Importa el tag static -->
 
 {% block content %}  
 <div class="auth-form">  
-    <h2>Iniciar Sesión</h2>  
+
+    <img src="{% static 'foto.png' %}" alt="Foto" style="max-width: 40%; height: auto;">
+    <h2 style="font-size: 40px;">Iniciar Sesión</h2>
 
     {% if messages %}  
     <div class="messages">  
@@ -34,4 +37,4 @@
 
     <p>¿No tienes una cuenta? <a href="{% url 'register' %}">Regístrate aquí</a></p>  
 </div>  
-{% endblock %}  
+{% endblock %}
