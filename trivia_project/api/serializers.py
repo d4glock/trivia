@@ -3,6 +3,7 @@ from questions.models import Question
 from players.models import Player  
 from games.models import Game  
 from django.contrib.auth.models import User  
+import random
 
  
 class UserSerializer(serializers.ModelSerializer):  

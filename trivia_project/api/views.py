@@ -27,15 +27,18 @@ class GameViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['post'], permission_classes=[IsAuthenticated])
     def start_game(self, request):
         try:
-            # Crear nuevo juego
-            game = Game.objects.create(
-                player=request.user,
-                score=0,
-                current_question=1
-            )
+            # Primero obtener o crear el Player asociado al usuario
+            player, created = Player.objects.get_or_create(user=request.user)
 
             # Obtener primera pregunta aleatoria
             question = Question.objects.order_by('?').first()
+
+            # Crear nuevo juego con el Player y la Question
+            game = Game.objects.create(
+                player=player,
+                score=0,
+                current_question=question  # Aquí usamos la instancia de Question, no un número
+            )
 
             return Response({
                 'game_id': game.id,
