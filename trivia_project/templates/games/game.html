@@ -33,32 +33,20 @@
             <p>Pregunta {{ question_number }} de {{ total_questions }}</p>  
             <p>Puntaje actual: {{ user.player.total_score }}</p>  
         </div>  
-
-        <div class="question-container">  
-            <h2>{{ question.text }}</h2>  
-
-            <form method="post" class="options-form">  
-                {% csrf_token %}  
-                <div class="options">  
-                    <label class="option">  
-                        <input type="radio" name="answer" value="{{ question.option_1 }}" required>  
-                        <span>{{ question.option_1 }}</span>  
-                    </label>  
-                    <label class="option">  
-                        <input type="radio" name="answer" value="{{ question.option_2 }}" required>  
-                        <span>{{ question.option_2 }}</span>  
-                    </label>  
-                    <label class="option">  
-                        <input type="radio" name="answer" value="{{ question.option_3 }}" required>  
-                        <span>{{ question.option_3 }}</span>  
-                    </label>  
-                    <label class="option">  
-                        <input type="radio" name="answer" value="{{ question.option_4 }}" required>  
-                        <span>{{ question.option_4 }}</span>  
-                    </label>  
-                </div>  
-                <button type="submit" class="button primary">Responder</button>  
-            </form>  
+            <!-- templates/games/game.html -->
+            <form method="POST">
+                {% csrf_token %}
+                <h2>{{ question.text }}</h2>
+                {% for option in shuffled_options %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="answer" value="{{ option.text }}" id="option{{ forloop.counter }}">
+                        <label class="form-check-label" for="option{{ forloop.counter }}">
+                            {{ option.text }}
+                        </label>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Responder</button>
+            </form>
         </div>  
     {% endif %}  
 </div>
