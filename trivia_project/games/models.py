@@ -2,16 +2,10 @@ from django.db import models
 from players.models import Player  
 from questions.models import Question  
 
-class Game(models.Model):  
-    player = models.ForeignKey(Player, on_delete=models.CASCADE)  
-    score = models.IntegerField(default=0)  
-    current_question = models.ForeignKey(
-        Question, 
-        on_delete=models.SET_NULL, 
-        null=True, 
-        blank=True,
-        related_name='current_games'
-    )  
+class Game(models.Model):
+    player = models.ForeignKey(Player, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0)
+    current_question = models.ForeignKey(Question, on_delete=models.CASCADE) 
     used_questions = models.ManyToManyField(
         Question,
         related_name='games_used_in',
