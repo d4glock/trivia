@@ -34,8 +34,9 @@ Ejecutar el servidor:
 
 Uso
 
-Instrucciones sobre cómo utilizar el proyecto. Incluye ejemplos de comandos o funciones importantes. Por ejemplo:
+Como utilizar el proyecto:
 
-Registrarse o logearse en el inicio
--Comenzar a jugar respondiendo las preguntas
-Al finalizar el juego ver la puntuación obtenida
+-Registrarse o logearse en el inicio
+-Comenzar a jugar respondiendo las preguntas eligiendo una de las 4 respuestas posibles
+-Finalizar partida
+-Iniciar otra partida o ver puntuaciones en la tabla de clasificaciones
