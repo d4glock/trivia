@@ -16,15 +16,9 @@
         <div class="game-over">  
             <h2>{{ message }}</h2>
 
-            {% if final_score <= 15 %}
-                <img src="{% static '1.png' %}" alt="Puntaje bajo" style="max-width: 40%; height: auto;">
-            {% else %}
-                <img src="{% static '2.png' %}" alt="Puntaje alto" style="max-width: 40%; height: auto;">
-            {% endif %}
 
             <p>Puntaje final: {{ final_score }}</p>  
-            <div class="game-actions">  
-                <a href="{% url 'restart_game' %}" class="button primary">Jugar de nuevo</a>  
+            <div class="game-actions">    
                 <a href="{% url 'home' %}" class="button secondary">Volver al inicio</a>  
             </div>  
         </div>  

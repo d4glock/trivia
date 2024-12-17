@@ -81,19 +81,8 @@ def game_view(request):
     return render(request, 'games/game.html', context)  
 
 
-@login_required    
-def restart_game_view(request):    
-    if 'question_ids' in request.session:  
-        del request.session['question_ids']  
-    if 'current_question_index' in request.session:  
-        del request.session['current_question_index']  
-
-    request.user.player.total_score = 0  
-    request.user.player.save()  
-
-    messages.info(request, '¡Juego reiniciado!')    
-    return redirect('game')  
-
+   
+   
 
 @login_required    
 def start_game_view(request):      
@@ -138,6 +127,18 @@ def start_game_view(request):
         'default_options': [10, 20, 30]
     })
 
+@login_required    
+def restart_game_view(request):    
+    if 'question_ids' in request.session:  
+        del request.session['question_ids']  
+    if 'current_question_index' in request.session:  
+        del request.session['current_question_index']  
+
+    request.user.player.total_score = 0  
+    request.user.player.save()  
+
+    messages.info(request, '¡Juego reiniciado!')    
+    return redirect('game')
 
 @login_required  
 def game_result_view(request):  

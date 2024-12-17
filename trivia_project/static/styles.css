@@ -3,13 +3,13 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9; /* Fondo gris claro */
-    color: #333; /* Texto oscuro */
+    background-color: #f4f4f9; 
+    color: #333; 
 }
 
 /* Navbar styles */
 .navbar {
-    background-color: #4c4c9d; /* Morado oscuro */
+    background-color: #4c4c9d; 
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
@@ -50,18 +50,20 @@ body {
     min-height: 80vh;
     text-align: center;
     padding: 40px 20px;
+
+    
 }
 
 .main-content h1 {
     font-size: 42px;
-    color: #4c4c9d; /* Morado oscuro */
+    color: #4c4c9d; 
     margin-bottom: 20px;
 }
 
 .main-content p {
     font-size: 18px;
     margin-bottom: 30px;
-    color: #666; /* Texto gris */
+    color: #666; 
 }
 
 .main-content .btn {
@@ -70,7 +72,7 @@ body {
     font-size: 18px;
     text-decoration: none;
     color: #ffffff;
-    background-color: #4c4c9d; /* Morado oscuro */
+    background-color: #4c4c9d; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -121,14 +123,14 @@ footer {
 }
 
 .profile-info strong {
-    color: #4c4c9d; /* Morado para resaltar */
+    color: #4c4c9d; 
 }
 
 /* Botón de cerrar sesión */
 .logout-btn {
     padding: 12px 24px;
     font-size: 18px;
-    background-color: #4c4c9d; /* Morado oscuro */
+    background-color: #4c4c9d; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -138,7 +140,7 @@ footer {
 }
 
 .logout-btn:hover {
-    background-color: #7d7dbb; /* Morado suave */
+    background-color: #7d7dbb; 
     transform: translateY(-3px);
 }
 
@@ -368,7 +370,7 @@ button {
 }
 
 button:hover {
-    background-color: #5a2a9d; /* Morado más oscuro */
+    background-color: #5a2a9d; 
 }
 
 /* Estilos para el enlace de inicio de sesión */
@@ -386,7 +388,6 @@ p a:hover {
     text-decoration: underline;
 }
 
-/* Estilos para los mensajes flash (mensajes de éxito, error, etc.) */
 .messages {
     margin-bottom: 20px;
 }
