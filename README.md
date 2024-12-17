@@ -10,10 +10,11 @@ Característica 3: Interfaz de clasificaciones
 
 Tecnologías Utilizadas
 
-Django
-Python
-Api propia
-HTML/CSS
+Django,
+Python,
+Api propia,
+HTML/CSS,
+SQLITE
 
 
 Instalación:
