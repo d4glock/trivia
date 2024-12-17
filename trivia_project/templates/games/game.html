@@ -1,169 +1,44 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 {% load static %}
 
-{% block title %}CalicoTrivia{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div id="alert-container"></div>
 
-{% block content %}  
-<div class="game-container">
-    {% if messages %}  
-        <div class="messages">  
-            {% for message in messages %} 
-            {% endfor %}
-        </div>  
-    {% endif %}    
+    <div class="card">
+        <div class="card-header">
+            <h2>Trivia Game</h2>
+            <div id="game-status"></div>
+        </div>
+        
+        <div class="card-body">
+            <div id="game-container">
+                {% if user.is_authenticated %}
+                    <button id="start-game" class="btn btn-primary">Comenzar Juego</button>
+                {% else %}
+                    <p>Por favor <a href="{% url 'login' %}">inicia sesión</a> para jugar.</p>
+                {% endif %}
+            </div>
 
-    {% if message %}  
-        <div class="game-over">  
-            <h2>{{ message }}</h2>
-
-            {% if final_score <= 15 %}
-                <img src="{% static '1.png' %}" alt="Puntaje bajo" style="max-width: 40%; height: auto;">
-            {% else %}
-                <img src="{% static '2.png' %}" alt="Puntaje alto" style="max-width: 40%; height: auto;">
-            {% endif %}
-
-            <p>Puntaje final: {{ final_score }}</p>  
-            <div class="game-actions">  
-                <a href="{% url 'restart_game' %}" class="button primary">Jugar de nuevo</a>  
-                <a href="{% url 'home' %}" class="button secondary">Volver al inicio</a>  
-            </div>  
-        </div>  
-    {% else %}  
-        <div class="game-progress">  
-            <p>Pregunta {{ question_number }} de {{ total_questions }}</p>  
-            <p>Puntaje actual: {{ user.player.total_score }}</p>  
-        </div>  
-        <div class="question-container">
-            <form method="POST">
+            <div id="question-container"></div>
+            
+            <form id="answer-form" style="display: none;">
                 {% csrf_token %}
-                <h2>{{ question.text }}</h2>
-                <div class="options">
-                    {% for option in shuffled_options %}
-                        <label class="option-button">
-                            <input type="radio" name="answer" value="{{ option.text }}" class="option-input">
-                            <span class="option-text">{{ option.text }}</span>
-                        </label>
-                    {% endfor %}
-                </div>
-                <button type="submit" class="btn btn-primary submit-button">Responder</button>
+                <div id="answer-container"></div>
+                <button type="submit" class="btn btn-primary mt-3">Enviar Respuesta</button>
             </form>
-        </div>  
-    {% endif %}  
+        </div>
+    </div>
 </div>
 
-<style>  
-    .game-container {  
-        max-width: 800px;  
-        margin: 0 auto;  
-        padding: 20px;
-    }  
-
-    .game-progress {  
-        text-align: center;  
-        margin-bottom: 2rem;  
-    }  
-
-    .question-container {  
-        background-color: #f8f9fa;  
-        padding: 2rem;  
-        border-radius: 10px;  
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        border: 2px solid black;
-    }  
-
-    .options {  
-    display: flex;  
-    flex-direction: column;  
-    gap: 1rem;  
-    margin: 2rem 1rem; /* Agrega margen lateral */
-    }  
-
-    .option-button {  
-        display: block;
-        position: relative;
-        padding: 1rem;
-        background-color: white;  
-        border: 2px solid #dee2e6;  
-        border-radius: 5px;  
-        cursor: pointer;  
-        transition: all 0.3s ease;  
-        width: calc(100% - 2rem); /* Reduce el ancho para evitar que toque los bordes */
-        margin: 0 auto; /* Centra los botones */
-    } 
-
-    .option-button:hover {  
-        background-color: #e9ecef;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }  
-
-    .option-input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
+{% if user.is_authenticated %}
+<script>
+    // Guardar el token en localStorage si no está guardado
+    if (!localStorage.getItem('authToken')) {
+        localStorage.setItem('authToken', '{{ user.auth_token.key }}');
     }
+</script>
+{% endif %}
 
-    .option-text {
-        display: block;
-        width: 100%;
-        text-align: left;
-        padding-left: 10px;
-    }
-
-    .option-input:checked + .option-text {
-        font-weight: bold;
-    }
-
-    .option-button:has(.option-input:checked) {
-        background-color: #007bff;
-        color: white;
-        border-color: #0056b3;
-    }
-
-    .submit-button {
-        display: block;
-        width: 100%;
-        padding: 1rem;
-        margin-top: 2rem;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .submit-button:hover {
-        background-color: #0056b3;
-    }
-
-    .button {  
-        display: inline-block;  
-        padding: 10px 20px;  
-        border-radius: 5px;  
-        text-decoration: none;  
-        font-weight: bold;  
-        margin: 0 10px;  
-    }  
-
-    .primary {  
-        background-color: #007bff;  
-        color: white;  
-        border: none;  
-    }  
-
-    .secondary {  
-        background-color: #6c757d;  
-        color: white;  
-    }  
-
-    .game-over {  
-        text-align: center;  
-    }  
-
-    .game-actions {  
-        margin-top: 2rem;  
-    }  
-</style>  
+<script src="{% static 'js/game.js' %}"></script>
 {% endblock %}
