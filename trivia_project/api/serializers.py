@@ -38,7 +38,8 @@ class QuestionSerializer(serializers.ModelSerializer):
         random.shuffle(options)
         return options
 
+# api/serializers.py
 class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
-        fields = ['id', 'score', 'current_question', 'created_at']
+        fields = ['id', 'player', 'score', 'current_question', 'created_at', 'is_finished']

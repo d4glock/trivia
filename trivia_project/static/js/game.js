@@ -87,29 +87,39 @@ class GameManager {
             this.showMessage('Por favor selecciona una respuesta', 'warning');
             return;
         }
-
+    
+        const requestData = {
+            game_id: this.gameId,
+            answer_text: selectedAnswer.value
+        };
+    
+        console.log('Enviando datos:', requestData); // Para debugging
+    
         try {
-            const response = await fetch('/api/games/submit_answer/', {
+            const response = await fetch('/api/games/submit-answer/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRFToken': this.getCsrfToken(),
                     'Authorization': `Token ${this.getAuthToken()}`
                 },
-                body: JSON.stringify({
-                    game_id: this.gameId,
-                    answer_text: selectedAnswer.value
-                })
+                body: JSON.stringify(requestData)
             });
-
+    
+            console.log('Status:', response.status); // Para debugging
+    
             if (!response.ok) {
-                throw new Error('Error al enviar la respuesta');
+                const errorData = await response.json();
+                console.error('Error response:', errorData); // Para debugging
+                throw new Error(errorData.error || `Error ${response.status}: ${response.statusText}`);
             }
-
+    
             const data = await response.json();
+            console.log('Respuesta exitosa:', data); // Para debugging
             this.handleAnswerResponse(data);
         } catch (error) {
-            this.showMessage('Error al enviar la respuesta: ' + error.message, 'error');
+            console.error('Error completo:', error); // Para debugging
+            this.showMessage(`Error al enviar la respuesta: ${error.message}`, 'error');
         }
     }
 

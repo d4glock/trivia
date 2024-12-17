@@ -14,6 +14,76 @@ class QuestionViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = QuestionSerializer
     permission_classes = [IsAuthenticated]
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from games.models import Game
+from questions.models import Question
+from players.models import Player
+
+class SubmitAnswerView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):  # Asegúrate de que el método sea 'post'
+        print("Datos recibidos:", request.data)  # Para debugging
+
+        game_id = request.data.get('game_id')
+        answer_text = request.data.get('answer_text')
+
+        if not game_id or not answer_text:
+            return Response(
+                {'error': 'Faltan datos requeridos'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            game = Game.objects.get(id=game_id)
+
+            # Verificar que el juego pertenece al usuario
+            if game.player.user != request.user:
+                return Response(
+                    {'error': 'No tienes permiso para este juego'},
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
+            current_question = game.current_question
+            is_correct = (answer_text.strip().lower() == current_question.correct_answer.strip().lower())
+
+            if is_correct:
+                game.score += 1
+
+            next_question = Question.objects.order_by('?').exclude(id=current_question.id).first()
+
+            if not next_question:
+                game_over = True
+                game.is_finished = True
+            else:
+                game_over = False
+                game.current_question = next_question
+
+            game.save()
+
+            response_data = {
+                'is_correct': is_correct,
+                'score': game.score,
+                'game_over': game_over,
+            }
+
+            if not game_over:
+                response_data['next_question'] = QuestionSerializer(next_question).data
+
+            return Response(response_data)
+
+        except Game.DoesNotExist:
+            return Response(
+                {'error': 'Juego no encontrado'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+        except Exception as e:
+            return Response(
+                {'error': str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
 class GameViewSet(viewsets.ModelViewSet):
     serializer_class = GameSerializer

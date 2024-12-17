@@ -52,6 +52,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
 
 MIDDLEWARE = [
@@ -73,7 +76,20 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'  
 LOGIN_REDIRECT_URL = '/redirect/'  # Apunta a la URL que acabas de registrar
   
-
+# En settings.py
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
  
 TEMPLATES = [  
     {  
