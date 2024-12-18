@@ -23,4 +23,159 @@
         <p>Por favor, inicia sesión para jugar.</p>
         <a href="{% url 'login' %}" class="button">Iniciar Sesión</a>
     {% endif %}
+<style>
+    :root {
+        --primary-color: #007bff;
+        --secondary-color: #6c757d;
+        --background-light: #f8f9fa;
+        --border-color: #dee2e6;
+        --hover-color: #e9ecef;
+        --shadow-color: rgba(0,0,0,0.1);
+        --transition-speed: 0.3s;
+        --border-radius: 10px;
+        --text-color: #333;
+      }
+      
+      /* Estilos generales */
+      h1 {
+        color: var(--text-color);
+        text-align: center;
+        margin-bottom: 2rem;
+        font-size: 2.5rem;
+        animation: fadeIn 0.5s ease-in;
+      }
+      
+      p {
+        color: var(--text-color);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+      
+      /* Contenedor del juego */
+      .game-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        animation: fadeIn 0.5s ease-in;
+      }
+      
+      /* Formulario y elementos de formulario */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: var(--text-color);
+      }
+      
+      .form-control {
+        width: 100%;
+        padding: 0.8rem;
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius);
+        font-size: 1rem;
+        transition: border-color var(--transition-speed) ease;
+      }
+      
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+      }
+      .button {
+        display: inline-block;
+        padding: 12px 24px;
+        border-radius: var(--border-radius);
+        text-decoration: none;
+        font-weight: bold;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: all var(--transition-speed) ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 4px var(--shadow-color);
+    }
+    
+    .button:hover {
+        background-color: var(--primary-color); /* Mantiene el mismo color */
+        transform: translateY(-2px); /* Efecto de elevación */
+        box-shadow: 0 4px 8px var(--shadow-color); /* Sombra más pronunciada */
+        color: white; /* Asegura que el texto permanezca blanco */
+    }
+    
+    .button:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 4px var(--shadow-color);
+    }
+
+      
+     
+      
+      /* Select personalizado */
+      select.form-control {
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 1em;
+        padding-right: 2.5rem;
+      }
+      
+      /* Animaciones */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      /* Media Queries */
+      @media (max-width: 768px) {
+        .game-container {
+          padding: 1rem;
+        }
+        
+        h1 {
+          font-size: 2rem;
+        }
+        
+        .button {
+          padding: 10px 20px;
+          font-size: 0.9rem;
+          width: 100%;
+          text-align: center;
+        }
+        
+        .form-control {
+          padding: 0.6rem;
+        }
+      }
+      
+      /* Mensajes de autenticación */
+      .auth-message {
+        text-align: center;
+        padding: 1rem;
+        background-color: var(--background-light);
+        border-radius: var(--border-radius);
+        margin: 2rem 0;
+      }
+      
+      /* Estilos para usuario autenticado */
+      .user-greeting {
+        color: var(--primary-color);
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+</style>
 {% endblock %}

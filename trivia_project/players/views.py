@@ -32,9 +32,9 @@ def register_view(request):
 @login_required
 def custom_redirect(request):
     if request.user.is_superuser:
-        return redirect('/admin/')  # URL del Django Admin
+        return redirect('/admin/') 
     else:
-        return redirect('/')  # URL para usuarios normales
+        return redirect('/')  
 
 def logout_view(request):
     logout(request)
@@ -51,7 +51,7 @@ def login_view(request):
             if user is not None:    
                 login(request, user)
                 messages.success(request, f'Bienvenido {username}!')
-                return redirect('custom_redirect')  # Redirige al custom_redirect
+                return redirect('custom_redirect')  
 
         else:    
             messages.error(request, 'Usuario o contraseña incorrectos.')    
@@ -66,7 +66,7 @@ def profile_view(request):
 @login_required    
 def leaderboard_view(request):    
     players_list = Player.objects.all().order_by('-total_score')
-    paginator = Paginator(players_list, 7)  # 7 jugadores por página
+    paginator = Paginator(players_list, 7)  
 
     page = request.GET.get('page')
     players = paginator.get_page(page)

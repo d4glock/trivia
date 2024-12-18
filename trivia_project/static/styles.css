@@ -102,46 +102,80 @@ footer {
 /* Perfil */
 .profile-container {
     max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff; /* Fondo blanco para el contenido */
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 80px auto; /* Aumentado el margen vertical */
+    padding: 40px; /* Más padding interno */
+    background-color: #ffffff;
+    border-radius: 15px; /* Bordes más suaves */
+    box-shadow: 0 8px 20px rgba(76, 76, 157, 0.1); /* Sombra más suave y con el color morado */
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.profile-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(76, 76, 157, 0.15);
 }
 
 .profile-title {
-    font-size: 32px;
-    color: #4c4c9d; /* Morado oscuro */
-    margin-bottom: 20px;
+    font-size: 2.5rem; /* Usando unidades rem para mejor escalabilidad */
+    color: #4c4c9d;
+    margin-bottom: 35px; /* Más espacio después del título */
+    font-weight: 700; /* Más negrita */
+    position: relative;
+    padding-bottom: 15px; /* Espacio para la línea decorativa */
+}
+
+.profile-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #4c4c9d;
+    border-radius: 2px;
+}
+
+.profile-info {
+    padding: 20px;
+    margin: 20px 0;
 }
 
 .profile-info p {
-    font-size: 18px;
-    color: #666;
-    margin: 10px 0;
+    font-size: 1.125rem; /* 18px en rem */
+    color: #555; /* Gris más oscuro para mejor legibilidad */
+    margin: 20px 0; /* Más espacio entre párrafos */
+    line-height: 1.6; /* Mejor espaciado entre líneas */
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-info p:hover {
+    background-color: rgba(76, 76, 157, 0.05); /* Sutil efecto hover */
+    border-radius: 8px;
 }
 
 .profile-info strong {
-    color: #4c4c9d; 
+    color: #4c4c9d;
+    font-weight: 600;
+    margin-right: 8px; /* Espacio después de las etiquetas strong */
 }
 
-/* Botón de cerrar sesión */
-.logout-btn {
-    padding: 12px 24px;
-    font-size: 18px;
-    background-color: #4c4c9d; 
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 40px auto;
+        padding: 25px;
+    }
 
-.logout-btn:hover {
-    background-color: #7d7dbb; 
-    transform: translateY(-3px);
+    .profile-title {
+        font-size: 2rem;
+    }
+
+    .profile-info p {
+        font-size: 1rem;
+    }
 }
 
 /* Tabla de clasificación */
