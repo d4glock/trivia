@@ -60,7 +60,7 @@ class GameViewSet(viewsets.ModelViewSet):
 
        
         if is_correct:
-            game.score += 4
+            game.score += 1
 
        
         game.used_questions.add(game.current_question)

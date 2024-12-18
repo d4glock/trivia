@@ -12,7 +12,6 @@ def register_view(request):
     if request.method == 'POST':    
         form = UserCreationForm(request.POST)    
         if form.is_valid():    
-            # Crea el usuario
             user = form.save()    
             if not Player.objects.filter(user=user).exists():
                 Player.objects.create(user=user)    
