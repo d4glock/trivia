@@ -6,7 +6,7 @@ from questions.models import Question
 class Game(models.Model):
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     score = models.IntegerField(default=0)
-    num_questions = models.IntegerField(default=10)  # Nuevo campo
+    num_questions = models.IntegerField(default=10)
     current_question = models.ForeignKey(
         Question,
         on_delete=models.SET_NULL,

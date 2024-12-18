@@ -15,6 +15,8 @@ Tecnologías Utilizadas
 Django, Python, Api propia HTML/CSS
 
 Instalación:
+instalar python si no lo tiene desde la pagina oficial
+https://www.python.org/
 
 Clonar el repositorio o descargar directamente de : git clone https://github.com/d4glock/trivia.git
 

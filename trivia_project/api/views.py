@@ -8,6 +8,8 @@ from questions.models import Question
 from games.models import Game
 import random
 
+
+
 class PlayerViewSet(viewsets.ModelViewSet):
     queryset = Player.objects.all()
     serializer_class = PlayerSerializer

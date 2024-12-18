@@ -50,10 +50,8 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {  
     'DEFAULT_AUTHENTICATION_CLASSES': [  
         'rest_framework.authentication.TokenAuthentication',  
-    ],  
-    'DEFAULT_PERMISSION_CLASSES': [  
-        'rest_framework.permissions.IsAuthenticated',  
-    ],  
+    ]  
+    
 }  
 
 MIDDLEWARE = [
@@ -73,7 +71,7 @@ ROOT_URLCONF = 'trivia_project.urls'
 
 LOGIN_URL = 'login'  
 LOGIN_REDIRECT_URL = 'home'  
-LOGIN_REDIRECT_URL = '/redirect/'  # Apunta a la URL que acabas de registrar
+LOGIN_REDIRECT_URL = '/redirect/'  
   
 
  
@@ -142,7 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Esto apunta a tu carpeta "static"
+STATICFILES_DIRS = [BASE_DIR / 'static']  
 
 
 # Default primary key field type

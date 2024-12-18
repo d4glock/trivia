@@ -87,20 +87,19 @@ def game_view(request):
 @login_required    
 def start_game_view(request):      
     if request.method == 'POST':
-        # Obtener el número de preguntas seleccionado (por defecto 10)
+    
         num_questions = int(request.POST.get('num_questions', 10))
         
-        # Validar que el número de preguntas sea válido
+        
         total_available_questions = Question.objects.count()
         if num_questions > total_available_questions:
             num_questions = total_available_questions
         
-        # Obtener todas las preguntas y mezclarlas
+      
         question_ids = list(Question.objects.values_list('id', flat=True))
         from random import shuffle
         shuffle(question_ids)
-        
-        # Tomar solo el número de preguntas seleccionado
+       
         question_ids = question_ids[:num_questions]
 
         # Limpiar sesión anterior si existe
@@ -120,7 +119,7 @@ def start_game_view(request):
         messages.info(request, f'¡Nuevo juego iniciado con {num_questions} preguntas!')    
         return redirect('game')
 
-    # Si es GET, mostrar el formulario de selección de número de preguntas
+ 
     total_questions = Question.objects.count()
     return render(request, 'games/start_game.html', {
         'max_questions': total_questions,
